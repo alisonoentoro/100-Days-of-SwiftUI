@@ -16,6 +16,7 @@ struct LoginView: View {
     @State var showMessage = "Something went wrong"
     @State var isLoading = false
     @State var isSuccessful = false
+    @EnvironmentObject var user: UserStore
 
     func login(){
         self.hideKeyboard()
@@ -32,11 +33,14 @@ struct LoginView: View {
 
             } else {
                 self.isSuccessful = true
+                self.user.isLogged = true
+                UserDefaults.standard.set(true, forKey: "isLogged")
                 
             DispatchQueue.main.asyncAfter(deadline: .now()+2) {
                 self.isSuccessful = false
                 self.email = ""
                 self.password = ""
+                self.user.showLogin = false
                 }
             }
         }
@@ -189,14 +193,14 @@ struct CoverView: View {
             ZStack {
                 Image(uiImage: #imageLiteral(resourceName: "Blob"))
                     .offset(x:-150, y:-200)
-                   // .rotationEffect(Angle(degrees: show ? 360+90 : 90))
+                    .rotationEffect(Angle(degrees: show ? 360+90 : 90))
                     .blendMode(.plusDarker)
                     .animation(Animation.linear(duration:120).repeatForever(autoreverses: false))
                     .onAppear{self.show = true}
                 
                 Image(uiImage: #imageLiteral(resourceName: "Blob"))
                     .offset(x:-200, y:-250)
-                 //   .rotationEffect(Angle(degrees: show ? 360 : 0), anchor: .leading)
+                    .rotationEffect(Angle(degrees: show ? 360 : 0), anchor: .leading)
                     .animation(Animation.linear(duration: 100).repeatForever(autoreverses: false))
                     .blendMode(.overlay)
                 
