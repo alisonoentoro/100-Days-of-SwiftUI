@@ -18,24 +18,22 @@ struct Home: View {
         ZStack {
             Color("background2")
                 .edgesIgnoringSafeArea(.all)
-            
-            HomeView(showProfile: $showProfile, showContent: $showContent)
-                .padding(.top, 44)
-                .background(
-                    VStack {
-                        LinearGradient(gradient: Gradient(colors: [Color("background2"), Color("background1")]), startPoint: .top, endPoint: .bottom)
-                            .frame(height:200)
-                        Spacer()
-                    }
-                    .background(Color("background1"))
-                )
-                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        
+            HomeBackgroundView()
                 .offset(y: showProfile ? -450 : 0)
-                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0.0, y: 0.0)
                 .rotation3DEffect(Angle(degrees: showProfile ? Double(viewState.height / 10) - 10 : 0), axis: (x: 10.0, y: 0, z: 0))
                 .scaleEffect(showProfile ? 0.9 : 1)
                 .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.3))
                 .edgesIgnoringSafeArea(.all)
+            
+           // TabView {
+                HomeView(showProfile: $showProfile, showContent: $showContent, viewState: .constant(.zero))
+//                    .tabItem {
+//                        Image(systemName: "play.circle.fill")
+//                        Text("Home")
+//                    }
+               // }
+            
             
             MenuView(showProfile: $showProfile)
                 .background(Color.black.opacity(0.001))
@@ -111,8 +109,6 @@ struct Home: View {
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home().environmentObject(UserStore())
-        TabBar()
-
     }
 }
 }
@@ -147,3 +143,16 @@ struct AvatarView: View {
 
 let screen = UIScreen.main.bounds
 	
+
+struct HomeBackgroundView: View {
+    var body: some View {
+        VStack {
+            LinearGradient(gradient: Gradient(colors: [Color("background2"), Color("background1")]), startPoint: .top, endPoint: .bottom)
+                .frame(height:200)
+            Spacer()
+        }
+        .background(Color("background1"))
+        .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0.0, y: 0.0)
+    }
+}

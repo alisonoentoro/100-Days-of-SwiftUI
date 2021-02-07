@@ -35,7 +35,7 @@ class ScenceDelegate:UIResponder, UISceneDelegate{
     
     func scene (_ scene: UIScene, willConnectTo session: UISceneSession, options connectingOptions: UIScene.ConnectionOptions){
         
-        let contentView = TabBar()
+        let contentView = Home()
         
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

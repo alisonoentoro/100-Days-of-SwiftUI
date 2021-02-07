@@ -17,7 +17,7 @@ struct TabBar: View {
             }
             CourseList().tabItem {
                 Image(systemName: "rectangle.stack.fill")
-                Text("COurses")
+                Text("Courses")
             }
         }
         .edgesIgnoringSafeArea(.top)
@@ -26,6 +26,6 @@ struct TabBar: View {
 
 struct TabBar_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar()
+        TabBar().environmentObject(UserStore())
     }
 }

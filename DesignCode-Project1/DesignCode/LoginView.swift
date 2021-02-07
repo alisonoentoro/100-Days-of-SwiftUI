@@ -68,7 +68,7 @@ struct LoginView: View {
                         Image(systemName: "person.crop.circle.fill")
                             .foregroundColor(Color(#colorLiteral(red: 0.8227134651, green: 0.8395441229, blue: 1, alpha: 1)))
                             .frame(width:44, height:44)
-                            .background(Color.white)
+                            .background(Color("background1"))
                             .clipShape(RoundedRectangle(cornerRadius: 16, style:    .continuous))
                             .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5 )
                             .padding(.leading)
@@ -89,7 +89,7 @@ struct LoginView: View {
                         Image(systemName: "lock.fill")
                             .foregroundColor(Color(#colorLiteral(red: 0.8227134651, green: 0.8395441229, blue: 1, alpha: 1)))
                             .frame(width:44, height:44)
-                            .background(Color.white)
+                            .background(Color("background1"))
                             .clipShape(RoundedRectangle(cornerRadius: 16, style:    .continuous))
                             .shadow(color: Color.black.opacity(0.15), radius: 5, x: 0, y: 5 )
                             .padding(.leading)
@@ -195,13 +195,13 @@ struct CoverView: View {
                     .offset(x:-150, y:-200)
                     .rotationEffect(Angle(degrees: show ? 360+90 : 90))
                     .blendMode(.plusDarker)
-                    .animation(Animation.linear(duration:120).repeatForever(autoreverses: false))
+                   // .animation(Animation.linear(duration:120).repeatForever(autoreverses: false))
                     .onAppear{self.show = true}
                 
                 Image(uiImage: #imageLiteral(resourceName: "Blob"))
                     .offset(x:-200, y:-250)
                     .rotationEffect(Angle(degrees: show ? 360 : 0), anchor: .leading)
-                    .animation(Animation.linear(duration: 100).repeatForever(autoreverses: false))
+                  //  .animation(Animation.linear(duration: 100).repeatForever(autoreverses: false))
                     .blendMode(.overlay)
                 
                 
